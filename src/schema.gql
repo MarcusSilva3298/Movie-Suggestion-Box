@@ -1,0 +1,36 @@
+# ------------------------------------------------------
+# THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
+# ------------------------------------------------------
+
+input CreateMovieInput {
+  titles: [String!]!
+}
+
+"""
+A date-time string at UTC, such as 2019-12-03T09:54:33Z, compliant with the date-time format.
+"""
+scalar DateTime
+
+type Movie {
+  created_at: DateTime!
+  id: String!
+  title: String!
+  updated_at: DateTime!
+  votes: Float!
+}
+
+type Mutation {
+  addMovies(createMovieInput: CreateMovieInput!): [Movie!]!
+  removeMovie(id: Int!): Movie!
+  updateMovie(updateMovieInput: UpdateMovieInput!): Movie!
+}
+
+type Query {
+  movie(id: Int!): Movie!
+  movies: [Movie!]!
+}
+
+input UpdateMovieInput {
+  id: Int!
+  titles: [String!]
+}
