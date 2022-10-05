@@ -10,6 +10,12 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-model base {
-  base String @unique
+model Movie {
+  id String @unique
+
+  title String @unique
+  votes Int
+
+  created_at DateTime @default(now())
+  updated_at DateTime @updatedAt
 }
