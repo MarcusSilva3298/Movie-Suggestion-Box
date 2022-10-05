@@ -1,0 +1,35 @@
+import { Resolver, Query, Mutation, Args, Int } from '@nestjs/graphql'
+import { Movie } from './entities/movie.entity'
+import { CreateMovieInput } from './dto/create-movie.input'
+import { UpdateMovieInput } from './dto/update-movie.input'
+import { MoviesService } from './services/movies.service'
+
+@Resolver(() => Movie)
+export class MoviesResolver {
+  constructor(private readonly moviesService: MoviesService) {}
+
+  @Mutation(() => [Movie])
+  addMovies(@Args('createMovieInput') { titles }: CreateMovieInput) {
+    return this.moviesService.create(titles)
+  }
+
+  @Query(() => [Movie], { name: 'movies' })
+  list() {
+    return this.moviesService.list()
+  }
+
+  @Query(() => Movie, { name: 'movie' })
+  findOne(@Args('id', { type: () => Int }) id: number) {
+    return this.moviesService.findOne(id)
+  }
+
+  @Mutation(() => Movie)
+  updateMovie(@Args('updateMovieInput') updateMovieInput: UpdateMovieInput) {
+    return this.moviesService.update(updateMovieInput.id, updateMovieInput)
+  }
+
+  @Mutation(() => Movie)
+  removeMovie(@Args('id', { type: () => Int }) id: number) {
+    return this.moviesService.remove(id)
+  }
+}
