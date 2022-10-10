@@ -12,7 +12,7 @@ export class MoviesService {
   ) {}
 
   create(titles: string[]): Promise<Movie[]> {
-    return this.moviesFactoryService.addMovies(titles)
+    return this.moviesFactoryService.add(titles)
   }
 
   list() {
@@ -23,11 +23,15 @@ export class MoviesService {
     return `This action returns a #${id} movie`
   }
 
-  update(id: number, updateMovieInput: UpdateMovieInput) {
-    return `This action updates a #${id} movie`
+  update(updateMovieInput: UpdateMovieInput) {
+    return this.moviesFactoryService.update(updateMovieInput)
   }
 
-  remove(id: number) {
-    return `This action removes a #${id} movie`
+  remove(title: string): Promise<Movie> {
+    return this.moviesFactoryService.remove(title)
+  }
+
+  findByTitle(title: string): Promise<Movie> {
+    return this.moviesQueryService.findByTitle(title)
   }
 }

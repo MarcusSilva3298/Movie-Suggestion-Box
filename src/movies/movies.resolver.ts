@@ -24,12 +24,12 @@ export class MoviesResolver {
   }
 
   @Mutation(() => Movie)
-  updateMovie(@Args('updateMovieInput') updateMovieInput: UpdateMovieInput) {
-    return this.moviesService.update(updateMovieInput.id, updateMovieInput)
+  updateMovies(@Args('updateMovieInput') updateMovieInput: UpdateMovieInput) {
+    return this.moviesService.update(updateMovieInput)
   }
 
   @Mutation(() => Movie)
-  removeMovie(@Args('id', { type: () => Int }) id: number) {
-    return this.moviesService.remove(id)
+  removeMovie(@Args('title', { type: () => String }) title: string) {
+    return this.moviesService.remove(title)
   }
 }

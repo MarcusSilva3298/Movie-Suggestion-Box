@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common'
+import { Injectable, NotFoundException } from '@nestjs/common'
 import { Movie } from '../entities/movie.entity'
 import { MoviesRepository } from '../movies.repository'
 
@@ -8,5 +8,14 @@ export class MoviesQueryService {
 
   list(): Promise<Movie[]> {
     return this.moviesRepository.list()
+  }
+
+  async findByTitle(title: string): Promise<Movie> {
+    const movie = await this.moviesRepository.findByTitle(title)
+
+    if (!movie)
+      throw new NotFoundException(`Movie with title: ${title} not found`)
+
+    return movie
   }
 }

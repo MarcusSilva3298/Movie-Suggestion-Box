@@ -21,8 +21,8 @@ type Movie {
 
 type Mutation {
   addMovies(createMovieInput: CreateMovieInput!): [Movie!]!
-  removeMovie(id: Int!): Movie!
-  updateMovie(updateMovieInput: UpdateMovieInput!): Movie!
+  removeMovie(title: String!): Movie!
+  updateMovies(updateMovieInput: UpdateMovieInput!): Movie!
 }
 
 type Query {
@@ -31,6 +31,7 @@ type Query {
 }
 
 input UpdateMovieInput {
-  id: Int!
-  titles: [String!]
+  new_title: String!
+  title: String!
+  votes: Float!
 }
