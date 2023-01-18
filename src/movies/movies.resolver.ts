@@ -8,7 +8,7 @@ import { MoviesService } from './services/movies.service'
 export class MoviesResolver {
   constructor(private readonly moviesService: MoviesService) {}
 
-  @Mutation(() => [Movie])
+  @Mutation(() => Movie)
   addMovie(@Args('createMovieInput') createMovieInput: CreateMovieInput) {
     return this.moviesService.create(createMovieInput)
   }

@@ -48,10 +48,24 @@ export class MoviesRepository {
     })
   }
 
-  async update({ title, new_title, votes }: UpdateMovieInput): Promise<Movie> {
+  async findById(id: string): Promise<Movie> {
+    return await this.prisma.movie.findUnique({
+      where: { id }
+    })
+  }
+
+  async update({
+    title,
+    duration,
+    genre,
+    id,
+    rating,
+    synopsis,
+    year_of_release
+  }: UpdateMovieInput): Promise<Movie> {
     return await this.prisma.movie.update({
-      where: { title },
-      data: { title: new_title, votes }
+      where: { id },
+      data: { title, duration, genre, rating, synopsis, year_of_release }
     })
   }
 }

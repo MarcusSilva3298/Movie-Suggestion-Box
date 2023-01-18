@@ -21,15 +21,15 @@ export class MoviesFactoryService {
   }
 
   async update(updateMovieInput: UpdateMovieInput): Promise<Movie> {
-    const { title, new_title } = updateMovieInput
+    const { id, title } = updateMovieInput
 
-    await this.moviesQueryService.findByTitle(title)
+    await this.moviesQueryService.findById(id)
 
-    if (new_title) {
-      const titleInUse = await this.moviesRepository.findByTitle(new_title)
+    if (title) {
+      const titleInUse = await this.moviesRepository.findByTitle(title)
 
       if (titleInUse)
-        throw new BadRequestException(`Title "${new_title}" already in use`)
+        throw new BadRequestException(`Title "${title}" already in use`)
     }
 
     return this.moviesRepository.update(updateMovieInput)
