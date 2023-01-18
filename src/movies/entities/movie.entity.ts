@@ -8,8 +8,20 @@ export class Movie {
   @Field()
   title: string
 
-  @Field()
-  votes: number
+  @Field({ nullable: true })
+  genre: string
+
+  @Field({ nullable: true })
+  rating: string
+
+  @Field({ nullable: true })
+  duration: string
+
+  @Field({ nullable: true })
+  synopsis: string
+
+  @Field(() => String, { nullable: true })
+  year_of_release: string
 
   @Field()
   created_at: Date
