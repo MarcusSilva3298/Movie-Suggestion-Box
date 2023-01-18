@@ -9,8 +9,8 @@ export class MoviesResolver {
   constructor(private readonly moviesService: MoviesService) {}
 
   @Mutation(() => [Movie])
-  addMovies(@Args('createMovieInput') { titles }: CreateMovieInput) {
-    return this.moviesService.create(titles)
+  addMovie(@Args('createMovieInput') createMovieInput: CreateMovieInput) {
+    return this.moviesService.create(createMovieInput)
   }
 
   @Query(() => [Movie], { name: 'movies' })

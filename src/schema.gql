@@ -3,7 +3,7 @@
 # ------------------------------------------------------
 
 input CreateMovieInput {
-  titles: [String!]!
+  title: String!
 }
 
 """
@@ -13,14 +13,18 @@ scalar DateTime
 
 type Movie {
   created_at: DateTime!
+  duration: String!
+  genre: String!
   id: String!
+  rating: String!
+  synopsis: String!
   title: String!
   updated_at: DateTime!
-  votes: Float!
+  year_of_release: DateTime!
 }
 
 type Mutation {
-  addMovies(createMovieInput: CreateMovieInput!): [Movie!]!
+  addMovie(createMovieInput: CreateMovieInput!): [Movie!]!
   removeMovie(title: String!): Movie!
   updateMovies(updateMovieInput: UpdateMovieInput!): Movie!
 }

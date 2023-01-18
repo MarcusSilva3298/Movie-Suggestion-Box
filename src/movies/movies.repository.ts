@@ -1,6 +1,7 @@
 import { Injectable, InternalServerErrorException } from '@nestjs/common'
 import { v4 } from 'uuid'
 import { PrismaService } from '../prisma/prisma.service'
+import { CreateMovieInput } from './dto/create-movie.input'
 import { UpdateMovieInput } from './dto/update-movie.input'
 import { Movie } from './entities/movie.entity'
 
@@ -8,25 +9,30 @@ import { Movie } from './entities/movie.entity'
 export class MoviesRepository {
   constructor(private prisma: PrismaService) {}
 
-  async add(titles: string[]): Promise<Movie[]> {
-    const ops = titles.map((title) => {
-      return this.prisma.movie.upsert({
-        where: { title },
-        create: { id: v4(), title, votes: 1 },
-        update: { votes: { increment: 1 } }
-      })
-    })
-
-    return await this.prisma.$transaction(ops).catch((err) => {
-      throw new InternalServerErrorException(
-        `Movies: prisma transaction error\n${err}`
-      )
+  async create({
+    duration,
+    genre,
+    rating,
+    synopsis,
+    title,
+    year_of_release
+  }: CreateMovieInput): Promise<Movie> {
+    return await this.prisma.movie.create({
+      data: {
+        id: v4(),
+        title,
+        genre,
+        duration,
+        rating,
+        synopsis,
+        year_of_release
+      }
     })
   }
 
   async list(): Promise<Movie[]> {
     return await this.prisma.movie.findMany({
-      orderBy: { votes: 'desc' }
+      orderBy: { title: 'asc' }
     })
   }
 

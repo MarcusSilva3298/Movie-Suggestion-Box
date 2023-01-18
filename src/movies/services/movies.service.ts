@@ -1,4 +1,5 @@
 import { Injectable } from '@nestjs/common'
+import { CreateMovieInput } from '../dto/create-movie.input'
 import { UpdateMovieInput } from '../dto/update-movie.input'
 import { Movie } from '../entities/movie.entity'
 import { MoviesFactoryService } from './movies.factory.service'
@@ -11,8 +12,8 @@ export class MoviesService {
     private moviesQueryService: MoviesQueryService
   ) {}
 
-  create(titles: string[]): Promise<Movie[]> {
-    return this.moviesFactoryService.add(titles)
+  create(createMovieInput: CreateMovieInput): Promise<Movie> {
+    return this.moviesFactoryService.create(createMovieInput)
   }
 
   list() {

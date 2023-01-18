@@ -1,4 +1,5 @@
 import { BadRequestException, Injectable } from '@nestjs/common'
+import { CreateMovieInput } from '../dto/create-movie.input'
 import { UpdateMovieInput } from '../dto/update-movie.input'
 import { Movie } from '../entities/movie.entity'
 import { MoviesRepository } from '../movies.repository'
@@ -11,8 +12,8 @@ export class MoviesFactoryService {
     private moviesQueryService: MoviesQueryService
   ) {}
 
-  add(titles: string[]): Promise<Movie[]> {
-    return this.moviesRepository.add(titles)
+  create(createMovieInput: CreateMovieInput): Promise<Movie> {
+    return this.moviesRepository.create(createMovieInput)
   }
 
   remove(title: string): Promise<Movie> {
