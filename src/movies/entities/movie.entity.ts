@@ -9,19 +9,19 @@ export class Movie {
   title: string
 
   @Field({ nullable: true })
-  genre: string
+  genre?: string
 
   @Field({ nullable: true })
-  rating: string
+  rating?: string
 
   @Field({ nullable: true })
-  duration: string
-
-  @Field({ nullable: true })
-  synopsis: string
+  duration?: string
 
   @Field(() => String, { nullable: true })
-  year_of_release: string
+  synopsis?: string
+
+  @Field(() => String, { nullable: true })
+  year_of_release?: string
 
   @Field()
   created_at: Date

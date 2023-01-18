@@ -6,17 +6,17 @@ export class CreateMovieInput {
   title: string
 
   @Field(() => String, { nullable: true })
-  genre: string
+  genre?: string
 
   @Field(() => String, { nullable: true })
-  rating: string
+  rating?: string
 
   @Field(() => String, { nullable: true })
-  duration: string
+  duration?: string
 
   @Field(() => String, { nullable: true })
-  synopsis: string
+  synopsis?: string
 
   @Field(() => String, { nullable: true })
-  year_of_release: string
+  year_of_release?: string
 }
