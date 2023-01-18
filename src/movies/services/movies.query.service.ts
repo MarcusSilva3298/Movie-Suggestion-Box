@@ -22,7 +22,7 @@ export class MoviesQueryService {
   async findById(id: string): Promise<Movie> {
     const movie = await this.moviesRepository.findById(id)
 
-    if (!movie) throw new NotFoundException(`Movie with ${id} not found`)
+    if (!movie) throw new NotFoundException(`Movie with id: ${id} not found`)
 
     return movie
   }

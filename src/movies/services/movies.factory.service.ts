@@ -12,12 +12,19 @@ export class MoviesFactoryService {
     private moviesQueryService: MoviesQueryService
   ) {}
 
-  create(createMovieInput: CreateMovieInput): Promise<Movie> {
+  async create(createMovieInput: CreateMovieInput): Promise<Movie> {
+    const { title } = createMovieInput
+
+    if (await this.moviesRepository.findByTitle(title))
+      throw new BadRequestException(`The title ${title} is already in use`)
+
     return this.moviesRepository.create(createMovieInput)
   }
 
-  remove(title: string): Promise<Movie> {
-    return this.moviesRepository.remove(title)
+  async remove(id: string): Promise<Movie> {
+    await this.moviesQueryService.findById(id)
+
+    return this.moviesRepository.remove(id)
   }
 
   async update(updateMovieInput: UpdateMovieInput): Promise<Movie> {
