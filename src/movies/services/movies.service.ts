@@ -28,8 +28,8 @@ export class MoviesService {
     return this.moviesFactoryService.update(updateMovieInput)
   }
 
-  remove(title: string): Promise<Movie> {
-    return this.moviesFactoryService.remove(title)
+  remove(id: string): Promise<Movie> {
+    return this.moviesFactoryService.remove(id)
   }
 
   findByTitle(title: string): Promise<Movie> {

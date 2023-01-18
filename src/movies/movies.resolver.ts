@@ -29,7 +29,7 @@ export class MoviesResolver {
   }
 
   @Mutation(() => Movie)
-  removeMovie(@Args('title', { type: () => String }) title: string) {
-    return this.moviesService.remove(title)
+  removeMovie(@Args('id', { type: () => String }) id: string) {
+    return this.moviesService.remove(id)
   }
 }

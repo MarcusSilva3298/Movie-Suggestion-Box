@@ -1,4 +1,4 @@
-import { Injectable, InternalServerErrorException } from '@nestjs/common'
+import { Injectable } from '@nestjs/common'
 import { v4 } from 'uuid'
 import { PrismaService } from '../prisma/prisma.service'
 import { CreateMovieInput } from './dto/create-movie.input'
@@ -36,9 +36,9 @@ export class MoviesRepository {
     })
   }
 
-  async remove(title: string): Promise<Movie> {
+  async remove(id: string): Promise<Movie> {
     return await this.prisma.movie.delete({
-      where: { title }
+      where: { id }
     })
   }
 
