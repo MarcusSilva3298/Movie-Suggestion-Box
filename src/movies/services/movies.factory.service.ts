@@ -16,7 +16,7 @@ export class MoviesFactoryService {
     const { title } = createMovieInput
 
     if (await this.moviesRepository.findByTitle(title))
-      throw new BadRequestException(`The title ${title} is already in use`)
+      throw new BadRequestException(`Title: ${title} is already in use`)
 
     return this.moviesRepository.create(createMovieInput)
   }
@@ -36,7 +36,7 @@ export class MoviesFactoryService {
       const titleInUse = await this.moviesRepository.findByTitle(title)
 
       if (titleInUse)
-        throw new BadRequestException(`Title "${title}" already in use`)
+        throw new BadRequestException(`Title: ${title} already in use`)
     }
 
     return this.moviesRepository.update(updateMovieInput)

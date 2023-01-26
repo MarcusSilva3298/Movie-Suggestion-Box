@@ -1,6 +1,5 @@
 import { NotFoundException } from '@nestjs/common'
 import { TestingModule, Test } from '@nestjs/testing'
-import { NotFoundError } from 'rxjs'
 import { MoviesModule } from '../../movies.module'
 import { MoviesRepository } from '../../movies.repository'
 import { MoviesService } from '../../services/movies.service'

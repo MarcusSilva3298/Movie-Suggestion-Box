@@ -31,8 +31,4 @@ export class MoviesService {
   remove(id: string): Promise<Movie> {
     return this.moviesFactoryService.remove(id)
   }
-
-  findByTitle(title: string): Promise<Movie> {
-    return this.moviesQueryService.findByTitle(title)
-  }
 }

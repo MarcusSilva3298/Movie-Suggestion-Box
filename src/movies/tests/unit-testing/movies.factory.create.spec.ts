@@ -30,7 +30,7 @@ describe('Users Factory - Create Movie', () => {
       .mockImplementationOnce(async () => movie)
 
     await expect(service.create({ title: movie.title })).rejects.toThrowError(
-      new BadRequestException(`The title ${movie.title} is already in use`)
+      new BadRequestException(`Title: ${movie.title} is already in use`)
     )
   })
 
