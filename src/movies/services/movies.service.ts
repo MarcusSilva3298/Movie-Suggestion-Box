@@ -20,8 +20,8 @@ export class MoviesService {
     return this.moviesQueryService.list()
   }
 
-  findOne(id: number) {
-    return `This action returns a #${id} movie`
+  findOne(id: string) {
+    return this.moviesQueryService.findById(id)
   }
 
   update(updateMovieInput: UpdateMovieInput) {

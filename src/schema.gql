@@ -30,12 +30,12 @@ type Movie {
 
 type Mutation {
   addMovie(createMovieInput: CreateMovieInput!): Movie!
-  removeMovie(title: String!): Movie!
+  removeMovie(id: String!): Movie!
   updateMovies(updateMovieInput: UpdateMovieInput!): Movie!
 }
 
 type Query {
-  movie(id: Int!): Movie!
+  movie(id: String!): Movie!
   movies: [Movie!]!
 }
 
