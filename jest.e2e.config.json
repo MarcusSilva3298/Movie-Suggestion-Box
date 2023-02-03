@@ -2,7 +2,7 @@
   "preset": "ts-jest",
   "rootDir": "src",
   "collectCoverage": true,
-  "testRegex": "e2e/.*\\.spec\\.ts$",
+  "testRegex": "e2e-testing/.*\\.spec\\.ts$",
   "transform": {
     "^.+\\.(t|j)s$": "ts-jest"
   },
